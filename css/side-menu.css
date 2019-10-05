@@ -25,6 +25,7 @@ This is the parent `<div>` that contains the menu and the content area.
 */
 #layout {
     position: relative;
+    left: 0;
     padding-left: 0;
 }
     #layout.active #menu {
@@ -80,6 +81,7 @@ appears on the left side of the page.
 
 #menu {
     margin-left: -150px; /* "#menu" width */
+    width: 150px;
     position: fixed;
     top: 0;
     left: 0;
@@ -107,12 +109,6 @@ appears on the left side of the page.
         background: transparent;
     }
 
-    /*
-    */
-    #menu .pure-menu .menu-item-section {
-        color: #fff;
-        margin: 0;
-    }
     /*
     Add that light border to separate items into groups.
     */
@@ -150,7 +146,6 @@ appears on the left side of the page.
         color: #fff;
         margin: 0;
     }
-
 
 /* -- Dynamic Button For Responsive Menu -------------------------------------*/
 
