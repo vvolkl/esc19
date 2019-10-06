@@ -1,3 +1,5 @@
+// adapted from http://www.bnikolic.co.uk/blog/hpc-perf-branchprediction.html
+// (this version avoids compiler optimization)
 #include <algorithm>
 #include <vector>
 #include <iostream>
