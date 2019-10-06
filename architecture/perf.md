@@ -132,7 +132,7 @@ Measure in various conditions
 
 
 
-Different form of “Braching” in conditional code
+Different form of “Branching” in conditional code
 ----------------------------------
 
 Use [branchPredictor.cpp]({{site.exercises_repo}}/hands-on/architecture/branchPredictor.cpp)
