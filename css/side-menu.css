@@ -1,3 +1,7 @@
+:root {
+    --menu-width: 250px;
+}
+
 body {
     color: #777;
 }
@@ -25,15 +29,16 @@ This is the parent `<div>` that contains the menu and the content area.
 */
 #layout {
     position: relative;
+    left: 0;
     padding-left: 0;
 }
     #layout.active #menu {
-        left: 150px;
-        width: 150px;
+        left: var(--menu-width);
+        width: var(--menu-width);
     }
 
     #layout.active .menu-link {
-        left: 150px;
+        left: var(--menu-width);
     }
 /*
 The content `<div>` is where all your content goes.
@@ -79,7 +84,8 @@ appears on the left side of the page.
 */
 
 #menu {
-    margin-left: -150px; /* "#menu" width */
+    margin-left: calc(-1 * var(--menu-width)); /* "#menu" width */
+    width: var(--menu-width);
     position: fixed;
     top: 0;
     left: 0;
@@ -107,12 +113,6 @@ appears on the left side of the page.
         background: transparent;
     }
 
-    /*
-    */
-    #menu .pure-menu .menu-item-section {
-        color: #fff;
-        margin: 0;
-    }
     /*
     Add that light border to separate items into groups.
     */
@@ -150,7 +150,6 @@ appears on the left side of the page.
         color: #fff;
         margin: 0;
     }
-
 
 /* -- Dynamic Button For Responsive Menu -------------------------------------*/
 
@@ -221,21 +220,21 @@ Hides the menu at `48em`, but modify this based on your app's needs.
     }
 
     #layout {
-        padding-left: 150px; /* left col width "#menu" */
+        padding-left: var(--menu-width); /\* left col width "#menu" *\/ */
         left: 0;
     }
     #menu {
-        left: 150px;
+        left: var(--menu-width);
     }
 
     .menu-link {
         position: fixed;
-        left: 150px;
+        left: var(--menu-width);
         display: none;
     }
 
     #layout.active .menu-link {
-        left: 150px;
+        left: var(--menu-width);
     }
 }
 
@@ -248,6 +247,6 @@ Hides the menu at `48em`, but modify this based on your app's needs.
     */
     #layout.active {
         position: relative;
-        left: 150px;
+        left: var(--menu-width);
     }
 }
