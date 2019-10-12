@@ -22,6 +22,11 @@ the easiest way to use perf is to profile the whole application (say ./a.out) us
 {% highlight bash %}
 perf stat -d ./a.out
 {% endhighlight %}
+or even
+{% highlight bash %}
+perf stat -d -d -d ./a.out
+{% endhighlight %}
+
 
 One can choose a set of events and list them on the command line as in
 
@@ -30,7 +35,8 @@ One can choose a set of events and list them on the command line as in
 For large applications more details can be obtained running ``perf record``  that will produce a file containing all sampled events and their location in the application.
 ``perf record  --call-graph=dwarf`` will produce a full call-graph. On more recent Intel hardware (since Haswell)
 one can use ``perf record  --call-graph=lbr`` which is faster and produces a more compact report.
-``perf report`` can be used to display the detailed profile
+``perf report`` can be used to display the detailed profile.
+To identify performance "hotspot" at code level compile with "-g" and "perf report" will interleave source code with assembler.
 
 a wrapper defining more user-friedly name for INTEL counters can be downloaded
 {% highlight bash %}
@@ -51,9 +57,33 @@ The actual name of the counters keep changing, so for a detail analysis one has 
 for an example (tailored to the Ivy-Bridge machines used for the exercise) see
 [`doOCPerfIB`]({{site.exercises_repo}}/hands-on/architecture/doOCPerfIB)
 
+or an example (tailored to the Skylake-avx512 machine also available used for the exercise) see
+[`doOCPerfSX`]({{site.exercises_repo}}/hands-on/architecture/doOCPerfSX)
+
 
 
 Excercise 1
+===========
+
+Architecture: Front-end
+-----------------------
+
+Use [branchPredictor.cpp]({{site.exercises_repo}}/hands-on/architecture/branchPredictor.cpp)
+
+compile, measure performance with and without the sorting (enough to run with and without an argument)
+explain behaviour. Try the "original" version: eventually with a different compiler (gcc 4.7 for instance).
+Undestand what it is happening (godbold can be of help). Modify the code to make it "branchless".
+
+Architecture: back-end
+-----------------------
+
+Use [backend.cpp]({{site.exercises_repo}}/hands-on/architecture/bachend.cpp)
+
+compile (c++ -Wall -g -march=native) with different compiler options (-O2,-O3, -Ofast, -funroll-loops) measure performance,
+indetify "hotspot", modify code to speed it up.
+
+
+Excercise 2
 ===========
 
 
@@ -68,7 +98,7 @@ throw "N" random gaussian numbers and compute average and rms....
 
 
 
-Excercise 2
+Excercise 3
 ===========
 
 Exchange the order of the loops in the matrix multiplication

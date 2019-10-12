@@ -5,7 +5,7 @@ category: memory
 ---
 
 
-To see the effect of data locality on the performance of algorithms we can start from atypical data structure
+To see the effect of data locality on the performance of algorithms we can start from a typical data structure
 as in
 
 [Data.h]({{site.exercises_repo}}/hands-on/memory/Data.h)
