@@ -36,7 +36,7 @@ For large applications more details can be obtained running ``perf record``  tha
 ``perf record  --call-graph=dwarf`` will produce a full call-graph. On more recent Intel hardware (since Haswell)
 one can use ``perf record  --call-graph=lbr`` which is faster and produces a more compact report.
 ``perf report`` can be used to display the detailed profile.
-To indetify performance "hotspot" at code level compile with "-g" and "perf report" will interleave source code with assembler.
+To identify performance "hotspot" at code level compile with "-g" and "perf report" will interleave source code with assembler.
 
 a wrapper defining more user-friedly name for INTEL counters can be downloaded
 {% highlight bash %}
@@ -56,6 +56,9 @@ The actual name of the counters keep changing, so for a detail analysis one has 
 
 for an example (tailored to the Ivy-Bridge machines used for the exercise) see
 [`doOCPerfIB`]({{site.exercises_repo}}/hands-on/architecture/doOCPerfIB)
+
+or an example (tailored to the Skylake-avx512 machine also available used for the exercise) see
+[`doOCPerfSX`]({{site.exercises_repo}}/hands-on/architecture/doOCPerfSX)
 
 
 
