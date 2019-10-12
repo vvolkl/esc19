@@ -5,7 +5,7 @@ struct Point {
    double norm() const { return std::sqrt(x*x+y*y+z*z);}
    
    double x,y,z;
-
+   bool ok;
 };
 
 #include<random>
@@ -19,9 +19,18 @@ void fill(Point & p) {
   p.z = gauss(reng);
 }
 
+Point cross(Point const & a, Point const & b) {
+  Point c;
+  c.x = a.y*b.z+a.z*b.z;
+  c.y = a.x*b.z-a.z*b.x;  
+  c.z = a.y*b.x+a.x*b.y;
+  return c;
+}
+
 #include<vector>
 #include <chrono>
 #include<iostream>
+
 
 
 int main() {
@@ -44,8 +53,27 @@ int main() {
     for (auto &p : pointsO) sum+=p.x;
 
   }
-   
- auto deltaF = std::chrono::duration_cast<std::chrono::milliseconds>(delta).count();
- std::cout << "time " << deltaF << " " << sum << std::endl;
+
+  auto deltaF = std::chrono::duration_cast<std::chrono::milliseconds>(delta).count();
+  std::cout << "norm time " << deltaF << " " << sum << std::endl;
+
+
+  delta=start-start;
+
+  std::vector<Point> pointsI2(1024*8);
+  for (auto &p : pointsI2) fill(p);
+    for (int k=0; k<10000; ++k) {
+    if (k>0) delta -= (std::chrono::high_resolution_clock::now()-start);
+    for (int i=0, n=pointsI.size(); i<n; ++i) {
+      pointsO[i] = cross(pointsI[i],pointsI2[i]);
+    }
+    if (k>0) delta += (std::chrono::high_resolution_clock::now()-start);
+    for (auto &p : pointsO) sum+=p.x;
+  } 
+  
+ deltaF = std::chrono::duration_cast<std::chrono::milliseconds>(delta).count();
+ std::cout << "cross time " << deltaF << " " << sum << std::endl;
+
+
 
 }
