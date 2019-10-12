@@ -132,8 +132,15 @@ Measure in various conditions
 
 
 
-Different form of “Braching” in conditional code
+Different form of “Branching” in conditional code
 ----------------------------------
+
+Use [branchPredictor.cpp]({{site.exercises_repo}}/hands-on/architecture/branchPredictor.cpp)
+
+compile, measure performance with and without the sorting (enough to run with and without an argument)
+explain behaviour. Try the "original" version: eventually with a different compiler (gcc 4.7 for instance).
+Undestand what it is happening (godbold can be of help). Modify the code to make it "branchless".
+
 
 Use [Branch.cpp]({{site.exercises_repo}}/hands-on/architecture/Branch.cpp)
 
