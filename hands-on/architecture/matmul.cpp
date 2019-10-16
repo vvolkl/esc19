@@ -14,8 +14,8 @@
 #endif
 
 #ifndef FLOAT
-#define FLOAT FLOAT
-#warning "using FLOAT"
+#define FLOAT float
+#warning "using float"
 #endif
 
 
