@@ -13,9 +13,13 @@
 #warning "using default matmul algorithm"
 #endif
 
+#ifndef FLOAT
+#define FLOAT FLOAT
+#warning "using FLOAT"
+#endif
 
 
-void mmult(float const * a, float const * b, float * c, int N) {
+void mmult(FLOAT const * a, FLOAT const * b, FLOAT * c, int N) {
 
   for ( int i = 0; i < N; ++i ) { 
     for ( int j = 0; j < N; ++j ) { 
@@ -29,7 +33,7 @@ void mmult(float const * a, float const * b, float * c, int N) {
 
 
 
-void mmult1(float const * a, float const * b, float * c, int N) {
+void mmult1(FLOAT const * a, FLOAT const * b, FLOAT * c, int N) {
 
   for ( int j = 0; j < N; ++j ) {
     for ( int k = 0; k < N; ++k ) {
@@ -42,7 +46,7 @@ void mmult1(float const * a, float const * b, float * c, int N) {
 }
 
 
-void mmult2(float const * a, float const * b, float * c, int N) {
+void mmult2(FLOAT const * a, FLOAT const * b, FLOAT * c, int N) {
 
   for ( int i = 0; i < N; ++i ) {
     for ( int k = 0; k < N; ++k ) {
@@ -54,7 +58,7 @@ void mmult2(float const * a, float const * b, float * c, int N) {
   
 }
 
-void mdiv2(float const * a, float const * b, float * c, int N) {
+void mdiv2(FLOAT const * a, FLOAT const * b, FLOAT * c, int N) {
 
   for ( int i = 0; i < N; ++i ) {
     for ( int k = 0; k < N; ++k ) {
@@ -68,13 +72,13 @@ void mdiv2(float const * a, float const * b, float * c, int N) {
 
 
 
-void init(float * x, int N, float y) {
+void init(FLOAT * x, int N, FLOAT y) {
   for ( int i = 0; i < N; ++i ) x[i]=y;
 }
 
 
-float * alloc(int N) {
-  return new float[N];
+FLOAT * alloc(int N) {
+  return new FLOAT[N];
   
 }
 
@@ -93,9 +97,9 @@ int main() {
   int N = 1000;
   
   int size = N*N;
-  float * a = alloc(size);
-  float * b = alloc(size);
-  float * c = alloc(size);
+  FLOAT * a = alloc(size);
+  FLOAT * b = alloc(size);
+  FLOAT * c = alloc(size);
   
   init(c,size,0.f);
   init(a,size,1.3458f);
@@ -105,8 +109,10 @@ int main() {
   benchmark::touch(a);
   benchmark::touch(b);
   delta -= (chrono::high_resolution_clock::now()-start);
-   MMULT_ALGO(a,b,c,N);
-  benchmark::keep(c);
+  for (int k=0; k<10; ++k) {
+    MMULT_ALGO(a,b,c,N);
+    benchmark::keep(c);
+  }
   delta += (chrono::high_resolution_clock::now()-start);
   std::cout << " Computation took "
               << chrono::duration_cast<chrono::milliseconds>(delta).count()
