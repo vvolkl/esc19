@@ -15,7 +15,7 @@
 struct BasePoint {
   virtual ~BasePoint(){}
   virtual Float x() const=0;
-  virtual Float& x()=0;
+  virtual void set_x(Float ix)=0;
 
   Float y,z;
   bool ok;
@@ -26,8 +26,8 @@ struct PointA : public BasePoint {
 
   ~PointA() override {}
 
-  Float x() const override { return m_x;}
-  Float & x() override { return m_x;}
+  Float x() const override { return Float(2)*m_x;}
+  void set_x(Float ix) override { m_x = Float(0.5)*ix;}
 
   Float m_x;
 };
@@ -37,8 +37,8 @@ struct PointB : public BasePoint {
 
   ~PointB() override {}
 
-  Float x() const override { return m_x;}
-  Float & x() override { return m_x;}
+  Float x() const override { return Float(0.5)*m_x;}
+  void set_x(Float ix) override { m_x = Float(2)*ix;}
 
   Float m_x;
 };
@@ -62,7 +62,7 @@ Container generate() {
   for (int i=0; i<ntot; ++i) {
     auto w = igen(reng);
     std::unique_ptr<BasePoint> p(w>5 ? (BasePoint*)(new PointA()) : (BasePoint*)(new PointB())); 
-    p->x() =  ugen(reng);
+    p->set_x(ugen(reng));
     p->y =  ugen(reng);
     p->z =  ugen(reng);
     auto r = igen(reng);
@@ -89,7 +89,7 @@ int main() {
   for (int k=0; k<2000; ++k) {
     delta -= (std::chrono::high_resolution_clock::now()-start);
     for (auto & p : points) {
-      p->x() += k;
+      p->set_x(p->x() + k);
     }  
    delta += (std::chrono::high_resolution_clock::now()-start);
   }
