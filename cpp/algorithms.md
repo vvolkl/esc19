@@ -17,10 +17,9 @@ generates and prints a vector of randomly-chosen integer numbers.
 Build it and run it a few times to verify that it works as
 expected:
 
-    [student@esc ~]$ cd esc/hands-on/cpp
-    [student@esc cpp]$ g++ -O3 -Wall -Wextra -o algo algo.cpp
-    [student@esc cpp]$ ./algo
-    [student@esc cpp]$ ./algo
+    cd esc/hands-on/cpp
+    g++ -O3 -Wall -Wextra -o algo algo.cpp
+    ./algo
 
 Then extend the program in order to:
 
@@ -35,6 +34,48 @@ to implement the requested functionality.
 documentation for the algorithms (and C++ in general).
 
 # Exercise 2
+
+Consider the program
+[`algo_par.cpp`]({{site.exercises_repo}}/hands-on/cpp/algo_par.cpp) and extend
+it in order to:
+
+* sum the elements of the vector with the `std::reduce` algorithm, using the
+  sequential execution policy
+* sum the elements of the vector with the `std::reduce` algorithm, using the
+  parallel execution policy
+* sort the elements of the vector with the `std::sort` algorithm, using the
+  sequential execution policy
+* sort the elements of the vector with the `std::sort` algorithm, using the
+  parallel execution policy
+
+Compare the execution times.
+
+The use of the parallel algorithms requires:
+
+* compiling with gcc v. 9
+* linking againsta the Threading Building Blocks (TBB) library
+
+To enable the use of gcc v. 9 load the corresponding module:
+
+    module load compilers/gcc-9.2.0_sl7
+    g++ --version
+
+Be sure the output includes `g++ (GCC) 9.2.0`
+
+To enable the use of TBB:
+
+    source \
+    /storage/gpfs_maestro_home/hpc_software/tbb2019_20191006oss/bin/tbbvars.sh \
+    intel64 linux auto_tbbroot
+
+To compile and link:
+
+    cd esc/hands-on/cpp
+    g++ -O3 algo_par.cpp -std=c++17 -I${TBBROOT}/include -L${TBBROOT}/lib/intel64/gcc4.8 -ltbb
+    
+TBB will be better introduced in subsequent lectures on parallel programming.
+
+# Exercise 3
 
 Modify the program [`algo_functions.cpp`]({{site.exercises_repo}}/hands-on/cpp/algo_functions.cpp) to:
 

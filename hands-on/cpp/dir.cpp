@@ -34,7 +34,7 @@ std::vector<std::string> entries(/* add the right arguments here */)
   //
   // dirent entry;
   // for (auto* r = &entry; readdir_r(dir, &entry, &r) == 0 && r; ) {
-  //   // `here entry.d_name` is the name of this entry
+  //   // here `entry.d_name` is the name of the current entry
   // }
 
   return result;
