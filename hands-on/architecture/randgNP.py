@@ -18,8 +18,9 @@ def singleRun( iterations = 1, extraIteration = False ):
   """
 
   # This number of iterations corresponds to 1kHS2k.seconds, i.e. 250 HS06 seconds
+  # increased *5
 
-  n = int( 100 * 12.5 )
+  n = int( 500 * 12.5 )
   calib = 250.0
 
   m = 0.0

@@ -4,11 +4,14 @@
 //  change -O2 in -Ofast
 //  add -funroll-loops
 //
-//  change order of loops
+//  change order of loops using -DMMULT_ALGO=mmult2
 //  change N (x2)
-//  change float to double
-//  change mult with div (or even /sqrt )
 //
+
+#ifndef MMULT_ALGO
+#define MMULT_ALGO mmult
+#warning "using default matmul algorithm"
+#endif
 
 #ifndef FLOAT
 #define FLOAT float
@@ -24,6 +27,45 @@ void mmult(FLOAT const * a, FLOAT const * b, FLOAT * c, int N) {
 	c[ i * N + j ]  +=   a[ i * N + k ]  *  b[ k * N + j ]; 
       } 
     } 
+  }
+  
+}
+
+
+
+void mmult1(FLOAT const * a, FLOAT const * b, FLOAT * c, int N) {
+
+  for ( int j = 0; j < N; ++j ) {
+    for ( int k = 0; k < N; ++k ) {
+      for ( int i = 0; i < N; ++i ) {
+	c[ i * N + j ]  +=   a[ i * N + k ]  *  b[ k * N + j ];
+      }
+    }
+  }
+  
+}
+
+
+void mmult2(FLOAT const * a, FLOAT const * b, FLOAT * c, int N) {
+
+  for ( int i = 0; i < N; ++i ) {
+    for ( int k = 0; k < N; ++k ) {
+      for ( int j = 0; j < N; ++j ) {
+	c[ i * N + j ]  +=   a[ i * N + k ]  *  b[ k * N + j ];
+      }
+    }
+  }
+  
+}
+
+void mdiv2(FLOAT const * a, FLOAT const * b, FLOAT * c, int N) {
+
+  for ( int i = 0; i < N; ++i ) {
+    for ( int k = 0; k < N; ++k ) {
+      for ( int j = 0; j < N; ++j ) {
+	c[ i * N + j ]  +=   a[ i * N + k ]  /  b[ k * N + j ];
+      }
+    }
   }
   
 }
@@ -68,13 +110,15 @@ int main() {
   benchmark::touch(b);
   delta -= (chrono::high_resolution_clock::now()-start);
   for (int k=0; k<10; ++k) {
-    mmult(a,b,c,N);
+    MMULT_ALGO(a,b,c,N);
     benchmark::keep(c);
   }
   delta += (chrono::high_resolution_clock::now()-start);
   std::cout << " Computation took "
               << chrono::duration_cast<chrono::milliseconds>(delta).count()
               << " ms" << std::endl;
+
+  // mdiv2(a,b,c,N);
 
   return c[N];
   
