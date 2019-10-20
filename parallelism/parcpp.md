@@ -132,7 +132,7 @@ int main()
 
 The area of the circle is pi and the area of the square is 4.
 
-Generate `N` random floats `x` and `y` between `-1` and `1`.
+Generate `N` random floats `x` and `y` between `-1` and `1` [https://en.cppreference.com/w/cpp/numeric/random/uniform_real_distribution](https://en.cppreference.com/w/cpp/numeric/random/uniform_real_distribution).
 
 Calculate the distance `r` of your point from the origin.
 
