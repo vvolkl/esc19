@@ -42,7 +42,8 @@ menu:
       label: Move
     - name: containers
       label: Containers
-
+    - name: compiletime
+      label: Compile-time computation
   -
     name: floatingpoint
     label: FLOATING POINT
