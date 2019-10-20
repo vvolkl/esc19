@@ -4,12 +4,12 @@ layout: main
 section: parallelism
 ---
 ### Environment
-Make sure you are using the devtoolset:
+Make sure you are using the `gcc 9.2.0`:
 ~~~
-$ scl enable devtoolset-7 llvm-toolset-7 bash
+$ module load compilers/gcc-9.2.0_sl7
 $ gcc --version
-gcc (GCC) 7.3.1 20180303 (Red Hat 7.3.1-5)
-Copyright (C) 2017 Free Software Foundation, Inc.
+gcc (GCC) 9.2.0
+Copyright (C) 2019 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ~~~
@@ -89,7 +89,7 @@ int main(){
 unsigned int n = std::thread::hardware_concurrency();
 std::vector<std::thread> v;
 for (int i = 0; i < n; ++i) {
-     v.emplace_back(f);
+     v.emplace_back(f,i);
 }
 for (auto& t : v) {
     t.join();
@@ -177,14 +177,38 @@ int main()
 }
 
 ```
+#### Parallel Algos
 
+```
+#include <vector>
+#include <algorithm>
+#include <execution>
+
+int main() {
+  constexpr int N = 10000;
+  std::vector<int> input;
+  std::vector<int> output;
+  output.resize(N);
+  // fill the vector
+  for (int i = 0; i < N; ++i) {
+   ....
+  }
+  // sort it in parallel
+  std::sort(std::execution::par, v.begin(), v.end());
+
+  auto foo = [](int i) -> int { return i * -2; };
+
+  // apply a function foo to each element of v 
+  std::transform(std::execution::par_unseq, v.begin(), v.end(), output.begin(), foo);
+}
+```
 
 ### Setting the environment for Intel TBB
 
 ~~~
-wget https://github.com/01org/tbb/releases/download/2018_U6/tbb2018_20180822oss_lin.tgz
-tar -xzf tbb2018_20180822oss_lin.tgz
-cd tbb2018_20180822oss
+wget https://github.com/intel/tbb/releases/download/2019_U9/tbb2019_20191006oss_lin.tgz
+tar -xzf tbb2019_20191006oss_lin.tgz
+cd tbb2019_20191006oss
 source bin/tbbvars.sh intel64 linux auto_tbbroot
 ~~~
 
@@ -202,7 +226,7 @@ int main()
 
 Compile with:
 ~~~
-g++ hello_world.cpp -ltbb
+g++ hello_world.cpp -ltbb -L tbb2019_20191006oss/lib/intel64/gcc4.8/
 ~~~
 
 
