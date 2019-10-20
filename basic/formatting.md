@@ -4,9 +4,10 @@ category: basic
 layout: main
 ---
 
-The goal of this exercise is to learn how to
-use [`clang-format`](https://clang.llvm.org/docs/ClangFormatStyleOptions.html)
-to format your code automatically and uniformly.
+The goal of this exercise is to learn how to use
+[`clang-format`](https://clang.llvm.org/docs/ClangFormatStyleOptions.html) to
+format your code automatically and uniformly. Remember to enable the
+`llvm-toolset-7` first.
 
 Consider [hello.cpp]({{site.exercises_repo}}/hands-on/basic/hello.cpp):
 
@@ -46,7 +47,6 @@ dump of the default settings.
       if (argc > 1)
         std::cout << argv[1];
     ...
-
 
 If we use the same `.clang-format` for all our projects, it can also be saved in
 ${HOME}.

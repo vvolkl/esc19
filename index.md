@@ -14,6 +14,6 @@ repository](https://github.com/infn-esc/esc19) using [GitHub
 Pages](https://pages.github.com/).
 
 The presentations used for the lectures are attached to the
-[agenda](https://agenda.infn.it/conferenceOtherViews.py?view=standard&confId=16941)
-and can be downloaded as a [single archive
-file](https://agenda.infn.it/conferenceDisplay.py/matPkg?confId=16941).
+[agenda](https://agenda.infn.it/event/17237/timetable/) and can be downloaded as
+a [single archive file](https://agenda.infn.it/event/17237/attachments/package),
+but wait until the end of the week.

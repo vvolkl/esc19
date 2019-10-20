@@ -5,12 +5,13 @@ layout: main
 ---
 
 The goal of this exercise is to understand how to compile and run test programs
-on `esc`. The default C++ compiler is 64-bit g++ v. 7.3.1, which by defaults
-compiles in C++14 mode. To enable C++17, pass the `-std=c++17` option to the
-compiler. It's also good practice to enable a high level of warnings.
+on `esc`. Let's do it with 64-bit g++ v. 8.3.1, which by defaults compiles in
+C++14 mode. To enable C++17, pass the `-std=c++17` option to the compiler. It's
+also good practice to enable a high level of warnings.
 
 Build [pi_time.cpp]({{site.exercises_repo}}/hands-on/basic/pi_time.cpp):
 
+    [student@esc ~]$ scl enable devtoolset-8 llvm-toolset-7 bash
     [student@esc ~]$ cd esc/hands-on/basic
     [student@esc basic]$ g++ -Wall -Wextra -std=c++17 -o pi_time pi_time.cpp
     [student@esc basic]$ ./pi_time 1000
