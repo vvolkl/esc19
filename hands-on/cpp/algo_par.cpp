@@ -33,6 +33,7 @@ int main()
   {
     auto t0 = std::chrono::high_resolution_clock::now();
     // sum all the elements of the vector with std::reduce, sequential policy
+    // NB you need to pass the initial value
     auto t1 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<float> d = t1 - t0;
     std::cout << " in " << d.count() << " s\n";
@@ -41,6 +42,7 @@ int main()
   {
     auto t0 = std::chrono::high_resolution_clock::now();
     // sum all the elements of the vector with std::reduce, parallel policy
+    // NB you need to pass the initial value
     auto t1 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<float> d = t1 - t0;
     std::cout << " in " << d.count() << " s\n";
