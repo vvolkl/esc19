@@ -1,3 +1,3 @@
-c++ -O2 -march=native matmulSol.cpp -DMMULT_ALGO=mmult2 -mprefer-vector-width=512 -DFLOAT=double -funroll-all-loops
-~/pmu-tools/toplev.py --nodes +IpArith,+Load_Miss_Real_Latency,+L3_Cache_Fill_BW,+L2_Cache_Fill_BW,+L1D_Cache_Fill_BW,+MLP,+ILP,+FLOPc,+GFLOPs --single-thread ./a.out
+c++ -g -O2 -march=native matmulSol.cpp -DMMULT_ALGO=mmult2 -mprefer-vector-width=512 -DFLOAT=double -funroll-all-loops
+~/pmu-tools/toplev.py --nodes +IpArith,+Load_Miss_Real_Latency,+L3_Cache_Fill_BW,+L2_Cache_Fill_BW,+L1D_Cache_Fill_BW,+MLP,+ILP,+FLOPc,+GFLOPs --show-sample --single-thread ./a.out
 ~/pmu-tools/toplev.py --metric-group +Instruction_Type,+Summary,+Power  -v --single-thread  ./a.out
