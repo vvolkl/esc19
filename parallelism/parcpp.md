@@ -205,12 +205,15 @@ int main() {
 
 ### Setting the environment for Intel TBB
 
-~~~
-wget https://github.com/intel/tbb/releases/download/2019_U9/tbb2019_20191006oss_lin.tgz
-tar -xzf tbb2019_20191006oss_lin.tgz
-cd tbb2019_20191006oss
-source bin/tbbvars.sh intel64 linux auto_tbbroot
-~~~
+To enable the use of TBB:
+
+    [student@esc cpp]$ source \
+    /storage/gpfs_maestro_home/hpc_software/tbb2019_20191006oss/bin/tbbvars.sh \
+    intel64 linux auto_tbbroot
+
+To compile and link:
+
+     [student@esc cpp]$ g++ -O3 algo_par.cpp -std=c++17 -I${TBBROOT}/include -L${TBBROOT}/lib/intel64/gcc4.8 -ltbb
 
 Let's check that you can compile a simple tbb program:
 ~~~
