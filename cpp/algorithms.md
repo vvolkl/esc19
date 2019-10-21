@@ -70,7 +70,7 @@ To enable the use of TBB:
 
 To compile and link:
 
-     [student@esc cpp]$ g++ -O3 algo_par.cpp -std=c++17 -I${TBBROOT}/include -L${TBBROOT}/lib/intel64/gcc4.8 -ltbb
+     [student@esc cpp]$ g++ -O3 algo_par.cpp -std=c++17 -ltbb
     
 TBB will be better introduced in subsequent lectures on parallel programming.
 
