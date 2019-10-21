@@ -59,9 +59,9 @@ creating a config file for ssh on the `bastion` host, for example:
     Hostname hpc-201-11-40.cr.cnaf.infn.it
     
     [student@bastion ~]$ ssh esc
-    student@hcp-201-11-40.cr.cnaf.infn.it's password:
+    student@hpc-201-11-40.cr.cnaf.infn.it's password:
     Last login: ...
-	[student@hcp-201-11-40 ~]$
+	[student@hpc-201-11-40 ~]$
 
 In the following, when you see `esc`, it means one of the servers.
 
@@ -126,7 +126,7 @@ The repository contains also these pages.
 
 1. Enable the use of gcc 9.2 and check that it's available
 
-       [student@esc ~]$ module load compilers/compilers/gcc-9.2.0_sl7
+       [student@esc ~]$ module load compilers/gcc-9.2.0_sl7
        [student@esc ~]$ gcc --version
        gcc (GCC) 9.2.0
        ...
