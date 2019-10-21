@@ -5,6 +5,7 @@
 #include <iterator>
 #include <numeric>
 #include <execution>
+#include <chrono>
 
 int main()
 {
