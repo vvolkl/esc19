@@ -38,6 +38,13 @@ one can use ``perf record  --call-graph=lbr`` which is faster and produces a mor
 ``perf report`` can be used to display the detailed profile.
 To identify performance "hotspot" at code level compile with "-g" and "perf report" will interleave source code with assembler.
 
+perf record/report is well documented in
+https://perf.wiki.kernel.org/index.php/Tutorial#Sample_analysis_with_perf_report
+
+an interesting reading is also
+https://stackoverflow.com/questions/27742462/understanding-linux-perf-report-output
+
+
 a wrapper defining more user-friedly name for INTEL counters can be downloaded
 {% highlight bash %}
 cd;git clone https://github.com/andikleen/pmu-tools.git
@@ -60,6 +67,10 @@ for an example (tailored to the Ivy-Bridge machines used for the exercise) see
 or an example (tailored to the Skylake-avx512 machine also available used for the exercise) see
 [`doOCPerfSX`]({{site.exercises_repo}}/hands-on/architecture/doOCPerfSX)
 
+The "TopDown" metodology and the use of toplel tool is documented in
+https://github.com/andikleen/pmu-tools/wiki/toplev-manual
+and in the excellent slides by A.Y. himself
+http://www.cs.technion.ac.il/~erangi/TMA_using_Linux_perf__Ahmad_Yasin.pdf
 
 
 Excercise 1
