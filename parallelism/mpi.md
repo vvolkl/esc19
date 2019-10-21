@@ -58,7 +58,7 @@ mpirun -np 2 --hostfile hostfile.txt /home/felice/hello
 
 ### Hello World!
 
-~~~
+```cpp
 #include <mpi.h>
 #include <iostream>
 int main(int argc, char** argv) {
@@ -76,7 +76,7 @@ int main(int argc, char** argv) {
   std::cout << "Hello world from processor " << processor_name << " rank " << rank << " of " << world_size << std::endl;
   MPI_Finalize();
 }
-~~~
+```
 
 
 
