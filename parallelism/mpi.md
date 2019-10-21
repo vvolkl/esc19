@@ -42,12 +42,8 @@ $ which mpirun
 
 Create a file `hostfile.txt` with the following data:
 ~~~
-hpc-200-06-06 slots=4
-hpc-200-06-07 slots=4
-###### Note: you can comment hosts in machinefile
-#hpc-200-06-05 slots=4
-#hpc-200-06-04 slots=4
-#############################################
+hpc-200-06-05 slots=1
+hpc-200-06-06 slots=1
 ~~~
 
 To compile your application you will use `mpic++` just like if it was g++ (it actually IS g++).
@@ -56,7 +52,7 @@ To execute your application you will use `mpirun`.
 
 If I want to run my application `hello` located in `/home/felice` using 8 processes I will need to run:
 ~~~
-mpirun -np 8 --hostfile hostfile.txt /home/felice/hello
+mpirun -np 2 --hostfile hostfile.txt /home/felice/hello
 ~~~
 
 
@@ -84,8 +80,7 @@ int main(int argc, char** argv) {
 
 
 
-<!--
-### Useful links
 
 
-<a href="http://docs.nvidia.com/cuda/cuda-runtime-api/index.html" target="_blank">http://docs.nvidia.com/cuda/cuda-runtime-api/index.html</a> -->
+
+
